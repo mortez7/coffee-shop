@@ -7,7 +7,7 @@
             <navbar-component />
           </div>
         </div>
-        <h1 class="title-big">For your pleasure</h1>
+        <title-component :title="title" />
       </div>
     </div>
     <section class="shop">
@@ -36,48 +36,12 @@
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
-              <!-- <product-card-component />
-              <product-card-component />
-              <product-card-component />
-              <product-card-component />
-              <product-card-component />
-              <product-card-component /> -->
-              <div class="shop__item">
-                <img :src="require(`@/assets/img/${goods[0].image}`)" :alt="goods[0].image" />
-                <div class="shop__item-title">{{ goods[0].title }}</div>
-                <div class="shop__item-country">{{ goods[0].country }}</div>
-                <div class="shop__item-price">{{ goods[0].price }}</div>
-              </div>
-              <div class="shop__item">
-                <img :src="require(`@/assets/img/${goods[1].image}`)" :alt="goods[0].image" />
-                <div class="shop__item-title">{{ goods[1].title }}</div>
-                <div class="shop__item-country">{{ goods[1].country }}</div>
-                <div class="shop__item-price">{{ goods[1].price }}</div>
-              </div>
-              <div class="shop__item">
-                <img :src="require(`@/assets/img/${goods[2].image}`)" :alt="goods[0].image" />
-                <div class="shop__item-title">{{ goods[2].title }}</div>
-                <div class="shop__item-country">{{ goods[2].country }}</div>
-                <div class="shop__item-price">{{ goods[2].price }}</div>
-              </div>
-              <div class="shop__item">
-                <img :src="require(`@/assets/img/${goods[3].image}`)" :alt="goods[0].image" />
-                <div class="shop__item-title">{{ goods[3].title }}</div>
-                <div class="shop__item-country">{{ goods[3].country }}</div>
-                <div class="shop__item-price">{{ goods[3].price }}</div>
-              </div>
-              <div class="shop__item">
-                <img :src="require(`@/assets/img/${goods[4].image}`)" :alt="goods[0].image" />
-                <div class="shop__item-title">{{ goods[4].title }}</div>
-                <div class="shop__item-country">{{ goods[4].country }}</div>
-                <div class="shop__item-price">{{ goods[4].price }}</div>
-              </div>
-              <div class="shop__item">
-                <img :src="require(`@/assets/img/${goods[5].image}`)" :alt="goods[0].image" />
-                <div class="shop__item-title">{{ goods[5].title }}</div>
-                <div class="shop__item-country">{{ goods[5].country }}</div>
-                <div class="shop__item-price">{{ goods[5].price }}</div>
-              </div>
+              <product-card-component classItem="shop__item" :name="goods[0].title" :price="goods[0].price" :image="goods[0].image" />
+              <product-card-component classItem="shop__item" :name="goods[1].title" :price="goods[1].price" :image="goods[1].image" />
+              <product-card-component classItem="shop__item" :name="goods[2].title" :price="goods[2].price" :image="goods[2].image" />
+              <product-card-component classItem="shop__item" :name="goods[3].title" :price="goods[3].price" :image="goods[3].image" />
+              <product-card-component classItem="shop__item" :name="goods[4].title" :price="goods[4].price" :image="goods[4].image" />
+              <product-card-component classItem="shop__item" :name="goods[5].title" :price="goods[5].price" :image="goods[5].image" />
             </div>
           </div>
         </div>
@@ -89,11 +53,13 @@
 <script>
 import NavbarComponent from "@/components/NavbarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
+import TitleComponent from "@/components/TitleComponent.vue";
 
 export default {
   components: {
     NavbarComponent,
     ProductCardComponent,
+    TitleComponent,
   },
   data() {
     return {
@@ -141,6 +107,7 @@ export default {
           price: "10.73$",
         },
       ],
+      title: "For your pleasure",
     };
   },
 };

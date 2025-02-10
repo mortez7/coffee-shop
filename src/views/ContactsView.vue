@@ -7,7 +7,7 @@
             <navbar-component />
           </div>
         </div>
-        <h1 class="title-big">Contact us</h1>
+        <title-component :title="title" />
       </div>
     </div>
     <section class="contacts">
@@ -59,13 +59,7 @@
                   </label>
                 </div>
                 <div class="col col-12">
-                  <textarea
-                    class="form-control"
-                    name="message"
-                    id="message"
-                    rows="5"
-                    placeholder="Leave your comments here"
-                  ></textarea>
+                  <textarea class="form-control" name="message" id="message" rows="5" placeholder="Leave your comments here"></textarea>
                 </div>
               </div>
 
@@ -84,10 +78,17 @@
 
 <script>
 import NavbarComponent from "@/components/NavbarComponent.vue";
+import TitleComponent from "@/components/TitleComponent.vue";
 
 export default {
   components: {
     NavbarComponent,
+    TitleComponent,
+  },
+  data() {
+    return {
+      title: "Contact us",
+    };
   },
 };
 </script>

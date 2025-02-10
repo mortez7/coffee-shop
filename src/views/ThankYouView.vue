@@ -7,7 +7,7 @@
             <navbar-component />
           </div>
         </div>
-        <h1 class="title-big">Thank You</h1>
+        <title-component :title="title" />
       </div>
     </div>
     <section class="contacts">
@@ -35,10 +35,19 @@
 
 <script>
 import NavbarComponent from "@/components/NavbarComponent.vue";
+import TitleComponent from "@/components/TitleComponent.vue";
+import LinkComponent from "@/components/LinkComponent.vue";
 
 export default {
   components: {
     NavbarComponent,
+    TitleComponent,
+    LinkComponent,
+  },
+  data() {
+    return {
+      title: "Thank You",
+    };
   },
 };
 </script>
