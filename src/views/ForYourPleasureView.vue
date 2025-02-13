@@ -49,7 +49,6 @@
 import NavbarComponent from "@/components/NavbarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
 import TitleComponent from "@/components/TitleComponent.vue";
-import { v4 as uuidv4 } from "uuid";
 
 export default {
   components: {
@@ -59,52 +58,13 @@ export default {
   },
   data() {
     return {
-      goods: [
-        {
-          id: uuidv4(),
-          image: "good-1.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-        {
-          id: uuidv4(),
-          image: "good-1.jpg",
-          title: "Presto Coffee Beans 1kg",
-          country: "Brazil",
-          price: "15.99$",
-        },
-        {
-          id: uuidv4(),
-          image: "good-1.jpg",
-          title: "AROMISTICO Coffee 1kg",
-          country: "Brazil",
-          price: "6.99$",
-        },
-        {
-          id: uuidv4(),
-          image: "good-1.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-        {
-          id: uuidv4(),
-          image: "good-1.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-        {
-          id: uuidv4(),
-          image: "good-1.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-      ],
       title: "For your pleasure",
     };
+  },
+  computed: {
+    goods() {
+      return this.$store.getters["getGoodsCards"];
+    },
   },
 };
 </script>

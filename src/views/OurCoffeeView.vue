@@ -52,7 +52,7 @@
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="shop__wrapper">
-              <product-card-component v-for="card in goods" :key="card.id" classItem="shop__item" :name="card.title" :price="card.price" :image="card.image" />
+              <product-card-component v-for="card in coffee" :key="card.id" classItem="shop__item" :name="card.title" :price="card.price" :image="card.image" />
             </div>
           </div>
         </div>
@@ -65,7 +65,6 @@
 import NavbarComponent from "@/components/NavbarComponent.vue";
 import ProductCardComponent from "@/components/ProductCardComponent.vue";
 import TitleComponent from "@/components/TitleComponent.vue";
-import { v4 as uuidv4 } from "uuid";
 
 export default {
   components: {
@@ -75,52 +74,13 @@ export default {
   },
   data() {
     return {
-      goods: [
-        {
-          id: uuidv4(),
-          image: "coffee-3.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-        {
-          id: uuidv4(),
-          image: "coffee-3.jpg",
-          title: "Presto Coffee Beans 1kg",
-          country: "Brazil",
-          price: "15.99$",
-        },
-        {
-          id: uuidv4(),
-          image: "coffee-3.jpg",
-          title: "AROMISTICO Coffee 1kg",
-          country: "Brazil",
-          price: "6.99$",
-        },
-        {
-          id: uuidv4(),
-          image: "coffee-3.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-        {
-          id: uuidv4(),
-          image: "coffee-3.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-        {
-          id: uuidv4(),
-          image: "coffee-3.jpg",
-          title: "Solimo Coffee Beans 2kg",
-          country: "Brazil",
-          price: "10.73$",
-        },
-      ],
       title: "Our Coffee",
     };
+  },
+  computed: {
+    coffee() {
+      return this.$store.getters["getCoffeeCards"];
+    },
   },
 };
 </script>
