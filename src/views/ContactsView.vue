@@ -124,17 +124,33 @@ export default {
     };
   },
   methods: {
+    reset() {
+      this.name = "";
+      this.email = "";
+      this.phone = "";
+      this.message = "";
+    },
     async submit() {
       const isFormCorrect = await this.v$.$validate();
       if (!isFormCorrect) return;
 
-      console.log({
+      const message = {
         name: this.name,
         email: this.email,
         phone: this.phone,
         message: this.message,
         agree: this.agree,
+      };
+
+      fetch("http://localhost:3000/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
       });
+
+      this.reset();
     },
   },
 };
