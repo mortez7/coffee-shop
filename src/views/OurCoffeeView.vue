@@ -35,16 +35,16 @@
           <div class="col-lg-4 offset-2">
             <form action="#" class="shop__search">
               <label class="shop__search-label" for="filter">Looking for</label>
-              <input id="filter" type="text" placeholder="start typing here..." class="shop__search-input" />
+              <input id="filter" type="text" placeholder="start typing here..." class="shop__search-input" @input="onSearch($event)" v-model="searchValue" />
             </form>
           </div>
           <div class="col-lg-4">
             <div class="shop__filter">
-              <div class="shop__filter-label">Or filter</div>
+              <div class="shop__filter-label" @click="resetFilters()">Or filter</div>
               <div class="shop__filter-group">
-                <button class="shop__filter-btn">Brazil</button>
-                <button class="shop__filter-btn">Kenya</button>
-                <button class="shop__filter-btn">Columbia</button>
+                <button class="shop__filter-btn" @click="onSort('Brazil')">Brazil</button>
+                <button class="shop__filter-btn" @click="onSort('Kenya')">Kenya</button>
+                <button class="shop__filter-btn" @click="onSort('Columbia')">Columbia</button>
               </div>
             </div>
           </div>
@@ -69,6 +69,7 @@ import TitleComponent from "@/components/TitleComponent.vue";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 
 import { navigate } from "../mixins/navigate";
+import debounce from "debounce";
 
 export default {
   components: {
@@ -90,8 +91,32 @@ export default {
     isLoading() {
       return this.$store.getters["getIsLoading"];
     },
+    searchValue: {
+      set(value) {
+        this.$store.dispatch("setSearchValue", value);
+      },
+      get() {
+        return this.$store.getters["getSearchValue"];
+      },
+    },
   },
   mixins: [navigate],
+  methods: {
+    onSearch: debounce(function (event) {
+      this.onSort(event.target.value);
+    }, 500),
+    onSort(value) {
+      fetch(`http://localhost:3000/coffee?q=${value}`)
+        .then((res) => res.json())
+        .then((data) => {
+          this.$store.dispatch("setCoffeeData", data);
+        });
+    },
+    resetFilters() {
+      this.onSort("");
+      this.searchValue = "";
+    },
+  },
   beforeMount() {
     this.$store.dispatch("setIsLoading", true);
   },
